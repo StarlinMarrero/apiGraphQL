@@ -6,11 +6,11 @@ import {
   Resolver,
   UseMiddleware,
 } from "type-graphql";
-import { User } from "../entities/user";
-import { ContextI } from "../interfaces/RequestHandler";
-import { isAuthenticated } from "../middlewares/auth";
-import { UserInput } from "../validations/userValidation";
-import jwt from 'jsonwebtoken'
+import { User } from "../../entities/user";
+import { ContextI } from "../../interfaces/RequestHandler";
+import { isAuthenticated } from "../../middlewares/auth";
+import { UserInput } from "../../validations/userValidation";
+import jwt from "jsonwebtoken";
 
 @Resolver()
 export class UserResolver {
@@ -53,20 +53,14 @@ export class UserResolver {
       return "password invalid";
     }
 
-
-    const token = jwt.sign({id: userExist.id, name: userExist.name}, "test", {
-      expiresIn: 36000
-    })
+    const token = jwt.sign({ id: userExist.id, name: userExist.name }, "test", {
+      expiresIn: 36000,
+    });
     console.log(token);
-    
+
     // context.res.json(token);
 
     return token;
-
   }
 
-  @Query(() => String)
-  async ping() {
-    return "Pong!";
-  }
 }

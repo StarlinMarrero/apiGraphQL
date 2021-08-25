@@ -9,8 +9,8 @@ import { User } from "../entities/user";
 
 @ValidatorConstraint()
 export class IsEmailAlreadyExistConstraint implements ValidatorConstraintInterface {
-  validate(email: any) {
-    const user = User.findOne({ email });
+ async validate(email: string) {
+    const user = await User.findOne({ email });
 
     if (!user) {
       return true;

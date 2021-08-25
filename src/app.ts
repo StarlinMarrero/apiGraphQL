@@ -2,7 +2,7 @@ import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
-import { UserResolver } from "./resolvers/userResolver";
+import { UserResolver } from "./resolvers/user/userResolver";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { ContextI } from "./interfaces/RequestHandler";
 
