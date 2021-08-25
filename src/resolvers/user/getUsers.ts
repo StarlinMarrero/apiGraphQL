@@ -3,7 +3,7 @@ import { User } from "../../entities/user";
 import { isAuthenticated } from "../../middlewares/auth";
 
 @Resolver()
-export class UserResolver {
+export class GetUsersResolver {
   @UseMiddleware(isAuthenticated)
   @Query(() => [User])
   async getUsers() {

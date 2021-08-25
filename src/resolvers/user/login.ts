@@ -4,7 +4,7 @@ import { ContextI } from "../../interfaces/RequestHandler";
 import jwt from "jsonwebtoken";
 
 @Resolver()
-export class UserResolver {
+export class LoginResolver {
   @Mutation(() => String)
   async login(
     @Arg("email") email: string,

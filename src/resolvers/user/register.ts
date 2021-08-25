@@ -3,7 +3,7 @@ import { User } from "../../entities/user";
 import { UserInput } from "../../validations/userValidation";
 
 @Resolver()
-export class UserResolver {
+export class RegisterResolver {
   @Mutation(() => User)
   async register(@Arg("data") { name, email, password }: UserInput) {
     console.log(name, email, password);

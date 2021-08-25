@@ -16,17 +16,8 @@ export const isAuthenticated: MiddlewareFn<ContextI> = async ({ context }, next:
 
     console.log(resultToken);
     
-    
+    context.res.locals.userLogin = resultToken;
 
-    // const headers = context.req.headers.authorization;
-
-    // const token = headers?.split(" ", 2)[1];
-
-    // if(!token) return context.res.json({isAuthenticated: false})
-
-    // const token_decoded = tokenServiceInstance.verify(token);
-
-    // if(typeof token_decoded == "string") return context.res.json({isAuthenticated: false})
 
     return next();
 
