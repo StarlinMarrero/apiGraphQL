@@ -31,6 +31,6 @@ export class User extends BaseEntity {
     return (this.password = await hash(this.password, 10));
   }
   async compare(pass: string) {
-    return compare(pass, this.password);
+    return await compare(pass, this.password);
   }
 }
