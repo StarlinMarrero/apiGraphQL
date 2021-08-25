@@ -47,7 +47,7 @@ export class UserResolver {
       return "email not found";
     }
 
-    const checkPassword = userExist.compare(password);
+    const checkPassword = await userExist.compare(password);
 
     if (!checkPassword) {
       return "password invalid";
