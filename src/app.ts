@@ -10,6 +10,7 @@ import { LoginResolver } from "./resolvers/user/login";
 import { RegisterResolver } from "./resolvers/user/register";
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import { LogOut } from "./resolvers/user/logout";
 
 
 
@@ -26,7 +27,7 @@ export async function startserver() {
   const apolloServer = new ApolloServer({
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     schema: await buildSchema({
-      resolvers: [GetUsersResolver, LoginResolver, RegisterResolver, meResolver],
+      resolvers: [GetUsersResolver, LoginResolver, RegisterResolver, meResolver, LogOut],
     }),
     context: ({ req, res }): ContextI => ({ req, res })
   });
