@@ -23,10 +23,13 @@ export class LoginResolver {
       return "password invalid";
     }
 
-    const token = jwt.sign({ id: userExist.id, name: userExist.name }, "test", {
-      expiresIn: 36000,
+    const token = jwt.sign({ id: userExist.id, name: userExist.name, email: userExist.email}, "auth", {
+      expiresIn: (60 * 60 * 24 * 1000)
     });
-    console.log(token);
+    
+    context.res.cookie("auth", token, {
+      maxAge: (60 * 60 * 24 * 1000)
+    })
 
     // context.res.json(token);
 

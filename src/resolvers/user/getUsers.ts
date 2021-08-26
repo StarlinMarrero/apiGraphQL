@@ -7,7 +7,7 @@ export class GetUsersResolver {
   @UseMiddleware(isAuthenticated)
   @Query(() => [User])
   async getUsers() {
-    console.log("Users");
+  
 
     return await User.find();
   }

@@ -6,18 +6,19 @@ import jwt from 'jsonwebtoken'
 export const isAuthenticated: MiddlewareFn<ContextI> = async ({ context }, next: NextFunction) => {
 
 
-    const token = context.req.headers["authorization"];
+    const tokenCookies = context.req.cookies["auth"];
 
-    if (!token) {
+    if (!tokenCookies) {
         return context.res.json("not authenticated")
     }
 
-    const resultToken = jwt.verify(token, "test");
+    const resultToken = jwt.verify(tokenCookies, "auth");
 
     console.log(resultToken);
     
     context.res.locals.userLogin = resultToken;
 
+    console.log('Cookies: ', tokenCookies);
 
     return next();
 

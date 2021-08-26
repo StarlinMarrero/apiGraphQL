@@ -8,10 +8,21 @@ import { meResolver } from "./resolvers/user/me";
 import { GetUsersResolver } from "./resolvers/user/getUsers";
 import { LoginResolver } from "./resolvers/user/login";
 import { RegisterResolver } from "./resolvers/user/register";
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
+
+
+
 
 export async function startserver() {
   const app = express();
+  app.use(cookieParser());
+  app.use(cors({
+     origin: "*",
+     credentials: true
+  }))
 
+  
   const apolloServer = new ApolloServer({
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     schema: await buildSchema({
@@ -22,6 +33,6 @@ export async function startserver() {
 
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
-
+  
   return app;
 }
