@@ -6,7 +6,9 @@ import {
   PrimaryGeneratedColumn,
   BeforeInsert,
   BaseEntity,
+  ManyToOne,
 } from "typeorm";
+import { FileImage } from "./fileImages";
 
 @ObjectType()
 @Entity()
@@ -25,6 +27,10 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @ManyToOne(()=> FileImage, image => image.users)
+  images: FileImage[]
+
 
   @BeforeInsert()
   async hashPassword() {

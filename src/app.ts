@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import express from "express";
+import express, { json, urlencoded } from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
@@ -11,6 +11,7 @@ import { RegisterResolver } from "./resolvers/user/register";
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import { LogOut } from "./resolvers/user/logout";
+import { fileImage } from "./resolvers/fileImage/upload";
 
 
 
@@ -22,12 +23,15 @@ export async function startserver() {
      origin: "*",
      credentials: true
   }))
+  app.use(urlencoded({extended: true}))
+  app.use(json());
+
 
   
   const apolloServer = new ApolloServer({
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     schema: await buildSchema({
-      resolvers: [GetUsersResolver, LoginResolver, RegisterResolver, meResolver, LogOut],
+      resolvers: [GetUsersResolver, LoginResolver, RegisterResolver, meResolver, LogOut, fileImage],
     }),
     context: ({ req, res }): ContextI => ({ req, res })
   });
