@@ -1,0 +1,14 @@
+# ______________******SERVER******______________
+PORT_SERVER=4000
+
+
+# ______________******DATABASE******______________
+DB_FRONT_TYPE=postgres
+DB_FRONT_HOST=localhost
+DB_FRONT_PORT=5432
+DB_FRONT_USERNAME=postgres
+DB_FRONT_PASSWORD=Admin
+DB_FRONT_DATABASE=testGraphQL
+
+# ______________******AUTH******______________
+SECRET_COOKIE=auth

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 @Resolver()
 export class LoginResolver {
-  @Mutation(() => String)
+  @Mutation(() => User)
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
@@ -33,6 +33,6 @@ export class LoginResolver {
 
     // context.res.json(token);
 
-    return token;
+    return userExist;
   }
 }

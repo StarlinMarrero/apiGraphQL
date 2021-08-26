@@ -1,17 +1,9 @@
 import { createConnection } from "typeorm";
-import path from "path";
+import config from "../config";
 
 export const conectionDB = async () => {
-  await createConnection({
-    type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "Admin",
-    database: "testGraphQL",
-    entities: [path.join(__dirname, "../entities/**")],
-    synchronize: true,
-  }).then(() => {
+  //@ts-ignore
+  await createConnection(config.db.front).then(() => {
     console.log("database connected");
   });
 };
