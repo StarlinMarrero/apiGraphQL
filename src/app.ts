@@ -19,11 +19,11 @@ export async function startserver() {
   const app = express();
   app.use(cookieParser());
   app.use(cors({
-     origin: "*",
-     credentials: true
+    origin: "http://localhost:3000",
+    credentials: true,
   }))
 
-  
+
   const apolloServer = new ApolloServer({
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     schema: await buildSchema({
@@ -33,7 +33,22 @@ export async function startserver() {
   });
 
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
-  
+  // apolloServer.applyMiddleware({ 
+  //   app,
+  //   cors:
+  //  });
+
+  apolloServer.applyMiddleware({
+    app,
+    cors: {
+      allowedHeaders: "Access-Control-Allow-Origin",
+      credentials: true,
+      origin: (_, next) => {
+        next(null, true);
+      }
+    },
+    path: "*"
+  })
+
   return app;
 }
