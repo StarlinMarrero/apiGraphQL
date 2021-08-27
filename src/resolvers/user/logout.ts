@@ -8,7 +8,7 @@ import config from '../../config'
 @Resolver()
 export class LogOut{
 
-    @Query(()=> Boolean)
+    @Mutation(()=> Boolean)
     async LogOut(
         @Ctx() {res}: ContextI
     ){
